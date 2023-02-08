@@ -11,7 +11,23 @@ class TreeNode {
   /** sumValues(): add up all values of invoking node and its children.
    * Returns sum as an integer. */
   sumValues() {
+    let count = 0;
+    let toSumStack = [this];
+    console.log({toSumStack});
+    debugger
 
+    while (toSumStack.length) {
+      let current = toSumStack.pop();
+      console.log("current.val", current.val);
+      count = count + current.val;
+      console.log("current.children", current.children);
+      debugger
+      for (const child of current.children) {
+        toSumStack.push(child);
+      }
+    }
+
+    return count
   }
 
   /** countEvens(): starting from the invoking node and moving through its
@@ -29,6 +45,8 @@ class TreeNode {
   }
 }
 
+
+
 class Tree {
   constructor(root = null) {
     this.root = root;
@@ -36,7 +54,25 @@ class Tree {
 
   /** sumValues(): add up all values in the tree. */
   sumValues() {
+    let count = 0;
+    let toSumStack = [this.root];
 
+    if (!this.root) return count;
+    console.log({toSumStack});
+    debugger
+
+    while (toSumStack.length) {
+      let current = toSumStack.pop();
+      console.log("current.val", current.val);
+      count = count + current.val;
+      console.log("current.children", current.children);
+      debugger
+      for (const child of current.children) {
+        toSumStack.push(child);
+      }
+    }
+
+    return count
   }
 
   /** countEvens(): count all nodes in the tree that have even values. */
