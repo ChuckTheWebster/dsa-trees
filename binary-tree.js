@@ -12,8 +12,23 @@ class BinaryTreeNode {
   /** minDepthToIncompleteNode(): return the minimum depth of the tree to an
    * incomplete node-- that is, the length of the shortest path from the root to
    * a node with less than two children. */
-  minDepthToIncompleteNode() {
+  minDepthToIncompleteNode(node=this, min=Infinity, depthCount=1 ) {
 
+    let current = node;
+    console.log({current});
+    // debugger
+
+    if (!current.left || !current.right) {
+      if (depthCount < min) {
+        min = depthCount // progress
+      }
+      return min
+    }
+    depthCount++; //progress
+    this.minDepthToIncompleteNode(current.left, min, depthCount);
+    this.minDepthToIncompleteNode(current.right, min, depthCount);
+
+    return min
   }
 
   /** maxDepth(): return the maximum depth from the invoking node -- that is,
@@ -40,8 +55,24 @@ class BinaryTree {
 
   // this is a stack or recursion problem; we'll use recursion
 
-  minDepthToIncompleteNode() {
+  minDepthToIncompleteNode(node=this.root, min=Infinity, depthCount=1) {
+    let current = node;
+    debugger;
+    if (current === null) return 0;
 
+    if (!current.left || !current.right) {
+      if (depthCount < min) {
+        min = depthCount // progress
+      }
+      return min
+    }
+    depthCount++; //progress
+
+    debugger;
+    min = this.minDepthToIncompleteNode(current.left, min, depthCount);
+    min = this.minDepthToIncompleteNode(current.right, min, depthCount);
+
+    return min
   }
 
   /** maxDepth(): return the maximum depth of the tree -- that is,
