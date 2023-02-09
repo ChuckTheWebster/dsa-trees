@@ -62,15 +62,15 @@ class BinaryTree {
 
     if (!current.left || !current.right) {
       if (depthCount < min) {
-        min = depthCount // progress
+        min = depthCount
       }
       return min
     }
     depthCount++; //progress
 
     debugger;
-    min = this.minDepthToIncompleteNode(current.left, min, depthCount);
     min = this.minDepthToIncompleteNode(current.right, min, depthCount);
+    min = this.minDepthToIncompleteNode(current.left, min, depthCount);
 
     return min
   }
